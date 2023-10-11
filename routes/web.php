@@ -29,3 +29,4 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\ForumController::class, 'index'])->name('home');
 Route::resource('forums', ForumController::class);
 Route::resource('post', PostController::class);
+Route::post('/posts', 'PostController@store');

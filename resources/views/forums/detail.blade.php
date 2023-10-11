@@ -18,7 +18,6 @@
 
 		<br/>
 
-
     	@forelse($posts as $post)
 
 	        <div class="panel panel-default">
@@ -43,7 +42,25 @@
 	@endif
 
 	@Logged()
-		Está identificado
+		<h3 class="text-muted">{{ __("Añadir un nuevo post al foro :name", ['name' => $forum->name]) }}</h3>
+
+		<form method="POST" action="../posts">
+                {{ csrf_field() }}
+                <input type="hidden" name="forum_id" value="{{ $forum->id }}"/>
+
+                <div class="form-group">
+                    <label for="title" class="col-md-12 control-label">{{ __("Título") }}</label>
+                    <input id="title" class="form-control" name="title" value="{{ old('title') }}"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="description" class="col-md-12 control-label">{{ __("Descripción") }}</label>
+                    <textarea id="description" class="form-control"
+                              name="description">{{ old('description') }}</textarea>
+                </div>
+
+                 <button type="submit" name="addPost" class="btn btn-default">{{ __("Añadir post") }}</button>
+            </form>
 	@else
 		@include('partials.login_link', ['message' => __("Inicia sesión para crear un post")])
 	@endLogged
