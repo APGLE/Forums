@@ -30,7 +30,16 @@ class ForumController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $this->validate(request(), [
+            'name' => 'required|max:100|unique:forums', // forums es la tabla dónde debe ser único
+            'description' => 'required|max:500',
+        ],
+        [
+            'name.required' => __("El campo NAME es requerido!!!")
+        ]);
+        
+        Forum::create(request()->all());
+        
         return back()->with('message', ['success', __("Foro creado correctamente")]); 
     }
 

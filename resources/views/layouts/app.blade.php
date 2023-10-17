@@ -71,6 +71,8 @@
                 </div>
             </div>
         </nav>
+
+        <div class="container" style="padding-bottom: 100px">
         @if(session('message'))
                 <div class="alert alert-{{ session('message')[0] }}">
                     {{ session('message')[1] }}
@@ -79,6 +81,7 @@
         <main class="py-4">
             @yield('content')
         </main>
+        </div>
     </div>
 </body>
 </html>
